@@ -1,19 +1,9 @@
-const express = require('express');
+// TO START THE SERVER
+const app = require('./src/app')
 
 
-const app = express();      //CREATE SERVER INSTANCE
 
-// IF USER REQUEST THEN THIS COMES ON RESPONSE
-app.get('/', (req, res) => {
-    res.send("Hello World")
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
 })
-
-app.get('/about', (req, res) => {
-    res.send('About Page')
-})
-
-
-app.listen(3000, () => {   // START SERVER
-    console.log("Server running on port 3000");
-})
-
