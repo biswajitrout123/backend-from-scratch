@@ -2,9 +2,10 @@
 const express = require('express')
 
 const app = express()
-app.use(express.json())     //MIDDLE WARE
+app.use(express.json())     //MIDDLE WARE //“If request body contains JSON data, convert it into a JavaScript object.”
 
 const notes = []
+
 
 app.post('/notes', (req, res) => {
     notes.push(req.body);
@@ -17,18 +18,19 @@ app.post('/notes', (req, res) => {
 app.get('/notes', (req, res) => {
     res.status(200).json({
         message: "note fetched successfully",
-        note: notes
+        note: notes                  //“Send the notes array to the client with the name ‘notes’.”
     })
 })
 
-app.delete('/notes/:index', (req, res) => {
-    const index = req.params.index
+// app.delete('/notes/:index', (req, res) => {
+//     const index = req.params.index
 
-    delete notes[ index ]
+//     delete notes[ index ]
 
-    res.status(200).json({
-        message: "note deleted successfully"
-    })
-})
+//     res.status(200).json({
+//         message: "note deleted successfully"
+//     })
+// })
+
 
 module.exports = app
