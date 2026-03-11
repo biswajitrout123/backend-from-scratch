@@ -20,13 +20,19 @@ app.post('/create-post', upload.single('image'), async (req, res) => {
     })
 
     return res.status(201).json({
-        message: "post created successfully",
+        message: "Post created successfully",
         post
     })
 })
 
 app.get("/posts", async (req, res) => {
-    
+
+    const posts = await postModel.find()
+
+    return res.status(200).json({
+        message: "Posts fetched successfully",
+        posts
+    })
 })
 
 module.exports = app
