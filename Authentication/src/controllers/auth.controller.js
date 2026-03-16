@@ -4,17 +4,13 @@ const jwt = require("jsonwebtoken");
 async function registerUser(req, res) {
     const { username, email, password } = req.body;
 
-    /*
-
-     const existingUser = await userModel.findOne({ email });
-
-    if (existingUser) {
+    const isUserAlreadyExists = await userModel.findOne({ email });
+    if (isUserAlreadyExists) {
         return res.status(400).json({
             message: "Email already registered"
         });
     }
 
-    */
 
     const user = await userModel.create({
         username, email, password
