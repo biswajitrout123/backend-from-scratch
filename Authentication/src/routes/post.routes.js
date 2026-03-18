@@ -29,6 +29,7 @@ router.post("/create", async(req, res) => {
 
     res.send("Post created successfully");
     
+    
 });
 
 module.exports = router;
