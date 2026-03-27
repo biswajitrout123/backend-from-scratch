@@ -48,11 +48,11 @@ async function loginUser(req, res) {
     const { username, email, password } = req.body;
     const user = await userModel.findOne({
         $or: [
-            {username},
-            {email}
+            { username },
+            { email }
         ]
     })
-    if(!user) {
+    if (!user) {
         return res.status(401).json({
             message: "Invalid Credentials"
         })
@@ -60,7 +60,7 @@ async function loginUser(req, res) {
 
     isPasswordValid = await bcrypt.compare(password, user.password)
 
-    if(!isPasswordValid) {
+    if (!isPasswordValid) {
         return res.status(401).json({
             message: "Invalid Credentials"
         })
@@ -91,4 +91,12 @@ async function loginUser(req, res) {
 
 }
 
-module.exports = { registerUser, loginUser}
+async function logoutUser(req, res) {
+    res.clearCookie("token")
+    res.status(200).json({
+        message: "User logged out successfull"
+    })
+
+}
+
+module.exports = { registerUser, loginUser, logoutUser }
