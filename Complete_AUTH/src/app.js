@@ -1,5 +1,10 @@
-const express = require('express');
+import express from 'express';
+import morgan from 'morgan';
 
 const app = express();
 
-module.exports = app;
+app.use(express.json());
+app.use(morgan('dev'))
+
+
+export default app;
